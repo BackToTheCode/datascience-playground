@@ -8,7 +8,7 @@ conf = SparkConf().setMaster("local").setAppName("SparkDecisionTree")
 sc = SparkContext(conf = conf)
 
 # Some functions that convert our CSV input data into numerical
-# features for each job candidate
+# # features for each job candidate
 def binary(YN):
     if (YN == 'Y'):
         return 1
@@ -40,8 +40,10 @@ def createLabeledPoints(fields):
         previousEmployers, educationLevel, topTier, interned]))
 
 #Load up our CSV file, and filter out the header line with the column names
-rawData = sc.textFile("e:/sundog-consult/udemy/datascience/PastHires.csv")
+rawData = sc.textFile("/Users/jamestuckett/Documents/Code/datascience-playground/PastHires.csv")
+print('raw', rawData)
 header = rawData.first()
+print('header', header)
 rawData = rawData.filter(lambda x:x != header)
 
 # Split each line into a list based on the comma delimiters
